@@ -7,6 +7,7 @@
 //
 
 #import "TipViewController.h"
+#import "SettingsViewController.h"
 
 @interface TipViewController ()
 
@@ -34,6 +35,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     [self updateValues];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+    
+    NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
+                                [UIFont boldSystemFontOfSize:17], UITextAttributeFont,
+                                [UIColor blackColor], UITextAttributeTextColor,
+                                nil];
+    [self.tipControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
+    [self.tipControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -65,6 +86,10 @@
     
     self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount];
     self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
+}
+
+- (void)onSettingsButton {
+    [self.navigationController pushViewController:[[SettingsViewController alloc] init] animated:YES];
 }
 
 @end
