@@ -43,6 +43,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+    
+    
 }
 
 
@@ -68,8 +70,10 @@
     
     if ([defaults integerForKey:@"isOn"]) {
         self.view.backgroundColor = [UIColor blackColor];
+        self.billTextField.textColor = [UIColor whiteColor];
     } else {
         self.view.backgroundColor = [UIColor whiteColor];
+        self.billTextField.textColor = [UIColor blackColor];
     }
     
     for (UIView *view in [self.view subviews]) {
@@ -97,6 +101,7 @@
 
     [defaults setObject:self.billTextField.text forKey:@"bill"]; //save bill amount
     [defaults synchronize];
+
 }
 
 - (void)didReceiveMemoryWarning {

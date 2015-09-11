@@ -36,7 +36,7 @@
                         <action selector="onToggle:" destination="-1" eventType="valueChanged" id="Roz-ax-v7r"/>
                     </connections>
                 </switch>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off the lights!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-mc-WqA">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Enable dark theme" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-mc-WqA">
                     <rect key="frame" x="14" y="139" width="177" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="PhL-VZ-HX5"/>
