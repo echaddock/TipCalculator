@@ -51,13 +51,14 @@
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIFont boldSystemFontOfSize:17], UITextAttributeFont,
                                 [UIColor blackColor], UITextAttributeTextColor,
-                                nil];
-    [self.tipControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
-    NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
-    [self.tipControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+                                nil],
+                 *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+
+    [self.tipControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    [self.tipControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
+
     self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
     
     if ([defaults objectForKey:@"bill"]) {
@@ -85,6 +86,8 @@
         }
     }
     
+    [self.billTextField becomeFirstResponder];
+    [self.billTextField addTarget:self action:@selector(textFieldDidChange) forControlEvents:UIControlEventEditingChanged];
 }
 
 
@@ -112,7 +115,10 @@
 */
 
 - (IBAction)onTap:(id)sender {
-    [self.view endEditing:YES];
+    [self updateValues];
+}
+
+- (void)textFieldDidChange {
     [self updateValues];
 }
 

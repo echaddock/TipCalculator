@@ -135,7 +135,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="ZJ6-Vc-luV" appends="YES" id="YZd-JK-BWY"/>
             </connections>
-            <point key="canvasLocation" x="511" y="261"/>
+            <point key="canvasLocation" x="459" y="251"/>
         </view>
         <tapGestureRecognizer id="ZJ6-Vc-luV">
             <connections>
