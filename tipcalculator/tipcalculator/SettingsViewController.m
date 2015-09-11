@@ -9,8 +9,12 @@
 #import "SettingsViewController.h"
 
 @interface SettingsViewController ()
+@property (weak, nonatomic) IBOutlet UISwitch *toggle;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *defaultTipControl;
+@property (weak, nonatomic) IBOutlet UILabel *defaultTipLabel;
+@property (weak, nonatomic) IBOutlet UILabel *toggleLabel;
 - (IBAction)onSelect:(id)sender;
+- (IBAction)onToggle:(id)sender;
 
 @end
 
@@ -22,21 +26,54 @@
     [defaults synchronize];
 }
 
+- (IBAction)onToggle:(id)sender {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setInteger:[self.toggle isOn] forKey:@"isOn"];
+    
+    if ([self.toggle isOn]) {
+        self.view.backgroundColor = [UIColor blackColor];
+        self.toggleLabel.textColor = [UIColor whiteColor];
+        self.defaultTipLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.toggleLabel.textColor = [UIColor blackColor];
+        self.defaultTipLabel.textColor = [UIColor blackColor];
+    }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    self.defaultTipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+    
+    [self.toggle setOn:[defaults integerForKey:@"isOn"]];
+    //Change colors to match toggle
+    if ([self.toggle isOn]) {
+        self.view.backgroundColor = [UIColor blackColor];
+        self.toggleLabel.textColor = [UIColor whiteColor];
+        self.defaultTipLabel.textColor = [UIColor whiteColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        self.toggleLabel.textColor = [UIColor blackColor];
+        self.defaultTipLabel.textColor = [UIColor blackColor];
+    }
+
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    //Regular state for tip control
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIFont boldSystemFontOfSize:17], UITextAttributeFont,
                                 [UIColor blackColor], UITextAttributeTextColor,
                                 nil];
     [self.defaultTipControl setTitleTextAttributes:attributes forState:UIControlStateNormal];
+    
+    //highlighted state for tip control
     NSDictionary *highlightedAttributes = [NSDictionary dictionaryWithObject:[UIColor whiteColor] forKey:UITextAttributeTextColor];
     [self.defaultTipControl setTitleTextAttributes:highlightedAttributes forState:UIControlStateSelected];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    self.defaultTipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
-
 }
 
 - (void)didReceiveMemoryWarning {

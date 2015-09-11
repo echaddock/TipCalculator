@@ -8,6 +8,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsViewController">
             <connections>
                 <outlet property="defaultTipControl" destination="vjg-ZE-XDu" id="yld-Yz-luc"/>
+                <outlet property="defaultTipLabel" destination="qUr-Ck-G4c" id="IWR-6I-7zi"/>
+                <outlet property="toggle" destination="BEk-Vw-e8F" id="YFj-a5-xo7"/>
+                <outlet property="toggleLabel" destination="hfU-mc-WqA" id="A33-xH-uAm"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -27,14 +30,17 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="BEk-Vw-e8F">
-                    <rect key="frame" x="168" y="134" width="51" height="31"/>
+                    <rect key="frame" x="190" y="134" width="51" height="31"/>
                     <color key="tintColor" red="0.57942543059999996" green="0.80007327780000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <action selector="onToggle:" destination="-1" eventType="valueChanged" id="Roz-ax-v7r"/>
+                    </connections>
                 </switch>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn off the lights!" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hfU-mc-WqA">
-                    <rect key="frame" x="14" y="139" width="133" height="21"/>
+                    <rect key="frame" x="14" y="139" width="177" height="21"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="21" id="PhL-VZ-HX5"/>
-                        <constraint firstAttribute="width" constant="133" id="SGS-nG-qfA"/>
+                        <constraint firstAttribute="width" constant="177" id="SGS-nG-qfA"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -63,7 +69,7 @@
                 <constraint firstItem="hfU-mc-WqA" firstAttribute="top" secondItem="qUr-Ck-G4c" secondAttribute="bottom" constant="33" id="27v-KZ-fa3"/>
                 <constraint firstItem="vjg-ZE-XDu" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="82" id="2Uz-GS-ciA"/>
                 <constraint firstItem="BEk-Vw-e8F" firstAttribute="top" secondItem="vjg-ZE-XDu" secondAttribute="bottom" constant="24" id="O2G-g7-1dq"/>
-                <constraint firstItem="BEk-Vw-e8F" firstAttribute="leading" secondItem="hfU-mc-WqA" secondAttribute="trailing" constant="21" id="Peo-Ab-jTn"/>
+                <constraint firstItem="BEk-Vw-e8F" firstAttribute="leading" secondItem="hfU-mc-WqA" secondAttribute="trailing" constant="-1" id="Peo-Ab-jTn"/>
                 <constraint firstItem="hfU-mc-WqA" firstAttribute="leading" secondItem="qUr-Ck-G4c" secondAttribute="leading" id="VG6-lp-cJB"/>
                 <constraint firstItem="qUr-Ck-G4c" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="14" id="Vkj-Yv-TRf"/>
                 <constraint firstItem="vjg-ZE-XDu" firstAttribute="leading" secondItem="qUr-Ck-G4c" secondAttribute="trailing" constant="6" id="cwG-vr-2iv"/>

@@ -37,7 +37,17 @@
     [self updateValues];
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Settings" style:UIBarButtonItemStylePlain target:self action:@selector(onSettingsButton)];
+}
+
+- (void) viewDidAppear:(BOOL)animated {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
+    self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
     NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:
                                 [UIFont boldSystemFontOfSize:17], UITextAttributeFont,
                                 [UIColor blackColor], UITextAttributeTextColor,
@@ -49,12 +59,41 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+    
+    if ([defaults objectForKey:@"bill"]) {
+        self.billTextField.text = [defaults objectForKey:@"bill"];
+        [self updateValues];
+    }
+    
+    if ([defaults integerForKey:@"isOn"]) {
+        self.view.backgroundColor = [UIColor blackColor];
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+    }
+    
+    for (UIView *view in [self.view subviews]) {
+        //Check if the view is of UILabel class
+        if ([view isKindOfClass:[UILabel class]]) {
+            //Cast the view to a UILabel
+            UILabel *label = (UILabel *)view;
+            //Set the color to label
+            if ([defaults integerForKey:@"isOn"]) {
+                label.textColor = [UIColor whiteColor];
+            } else {
+                label.textColor = [UIColor blackColor];
+            }
+        }
+    }
+    
 }
 
-- (void) viewDidAppear:(BOOL)animated {
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"selectedSegment"];
+
+    [defaults setObject:self.billTextField.text forKey:@"bill"]; //save bill amount
+    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning {

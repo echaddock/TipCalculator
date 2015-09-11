@@ -100,7 +100,7 @@
                     <constraints>
                         <constraint firstAttribute="width" constant="134" id="7qV-Id-fqi"/>
                     </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                     <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                 </textField>
             </subviews>
@@ -135,7 +135,7 @@
             <connections>
                 <outletCollection property="gestureRecognizers" destination="ZJ6-Vc-luV" appends="YES" id="YZd-JK-BWY"/>
             </connections>
-            <point key="canvasLocation" x="562" y="310"/>
+            <point key="canvasLocation" x="511" y="261"/>
         </view>
         <tapGestureRecognizer id="ZJ6-Vc-luV">
             <connections>
